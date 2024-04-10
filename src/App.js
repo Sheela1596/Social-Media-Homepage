@@ -3,6 +3,7 @@ import axios from 'axios';
 import './socialmediahomepage.css';
 
 function SocialMediaHomePage() {
+  
   const [posts, setPosts] = useState([]);
   const [usersData, setUsersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
