@@ -1,0 +1,105 @@
+/* SocialMediaHomePage.css */
+
+/* General styles */
+.social-media-homepage {
+  font-family: 'Helvetica Neue', sans-serif; /* Use Twitter's font */
+  padding: 20px;
+  color: rgb(17, 171, 231);
+  text-align: center; /* Center the title */
+}
+
+/* Post styles */
+.post {
+  background: linear-gradient(#7dbefa, #85d6df); /* Gradient background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increased shadow */
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease; /* Add transition for hover effect */
+}
+
+.post:hover {
+  transform: translateY(-5px); /* Apply a slight lift on hover */
+}
+
+.post-content {
+  margin-bottom: 20px; /* Add space between post content and comments */
+}
+
+.post-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #fff; /* Change post title color to white */
+  font-weight: bold; /* Different font weight for post title */
+}
+
+.post-content p {
+  font-size: 16px;
+  text-align: left;
+  color: #fff; /* Lighter text color */
+  margin-bottom: 15px;
+}
+
+/* Comments styles */
+.comments {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comment {
+  padding: 10px;
+  border-bottom: 1px solid #d8dfe6; /* Add a border between comments */
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.384); /* Semi-transparent background */
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+
+.comment:hover {
+  background-color: rgba(0, 0, 0, 0.021); /* Change the background color on hover */
+}
+
+.comment:last-child {
+  border-bottom: none; /* Remove border for the last comment */
+}
+
+.comment img {
+  border-radius: 50%;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+}
+
+.comment-content {
+  font-size: 14px;
+  text-align: left;
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+ 
+}
+
+.username {
+  width: 100px; /* Set a fixed width for the username container */
+}
+
+/* Decorative styles */
+.comment-content {
+  padding: 10px; /* Add padding to comment content */
+}
+
+.comment-content strong {
+  color: #000000;
+  width: 70px;
+  font-weight: bold;
+  margin-right: 10px; /* Change username color to match post text */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
