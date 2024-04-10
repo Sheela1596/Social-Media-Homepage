@@ -4,6 +4,10 @@
   padding: 20px;
   color: rgb(17, 171, 231);
   text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -14,6 +18,9 @@
   padding: 20px;
   margin-bottom: 20px;
   transition: transform 0.2s ease; 
+  width: 50%;
+  margin: 0 auto 20px;
+  
 }
 
 .post:hover {
@@ -70,13 +77,26 @@
   height: 40px;
 }
 
+.comment-button {
+  background-color: #37918c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.comment-button:hover {
+  background-color: #146e62;
+}
+
 .comment-content {
   font-size: 14px;
   text-align: left;
   color: #0a0a0a;
   display: flex;
-  align-items: center;
- 
+  align-items: center; 
 }
 
 .username {
@@ -95,9 +115,18 @@
   margin-right: 10px; 
 }
 
+.comment-content .heart-icon {
+  margin-left: 5px;
+}
+
+.reply-text {
+  margin-left: 10px;
+  color: #007bff;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
   .posts {
-    grid-template-columns: 1fr;
+    width: 90%;
   }
 }

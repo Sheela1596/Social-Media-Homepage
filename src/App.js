@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './socialmediahomepage.css';
+import { FaRegHeart } from 'react-icons/fa';
 
 function SocialMediaHomePage() {
-  
+
   const [posts, setPosts] = useState([]);
   const [usersData, setUsersData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [commentsVisible, setCommentsVisible] = useState({});
 
   useEffect(() => {
     axios.get('./username.json')
@@ -32,6 +34,11 @@ function SocialMediaHomePage() {
         Promise.all(postsWithComments)
           .then(updatedPosts => {
             setPosts(updatedPosts);
+            const initialCommentsVisibleState = updatedPosts.reduce((acc, post) => {
+              acc[post.id] = false;
+              return acc;
+            }, {});
+            setCommentsVisible(initialCommentsVisibleState);
           });
       })
       .catch(error => {
@@ -40,10 +47,7 @@ function SocialMediaHomePage() {
   }, []);
 
   const getUserName =  id=> {
-    console.log('userId:', id);
-    console.log('usersData:', usersData);
     const user = usersData.find(user => user.userId === String(id));
-    console.log('Found user:', user);
     if (!user) {
       console.log(`User with userId ${id} not found.`);
     }
@@ -52,8 +56,14 @@ function SocialMediaHomePage() {
   
   
   const getUserAvatarUrl = userId => {
-    console.log('imageuserid=',userId);
     return `https://picsum.photos/50?random=${userId}&seed=${Math.random()}`;
+  };
+
+  const toggleCommentsVisibility = postId => {
+    setCommentsVisible(prevState => ({
+      ...prevState,
+      [postId]: !prevState[postId]
+    }));
   };
 
   if (isLoading) {
@@ -70,19 +80,23 @@ function SocialMediaHomePage() {
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
               </div> 
-              <ul className="comments">
-                {post.comments.map(comment => {
-                  console.log('Comment:', comment);
-                  return (
+              <button className="comment-button" onClick={() => toggleCommentsVisibility(post.id)}>
+                {commentsVisible[post.id] ? "Hide Comments" : "Show Comments"}
+              </button>
+              {commentsVisible[post.id] && (
+                <ul className="comments">
+                  {post.comments.map(comment => (
                     <li key={comment.id} className="comment">
                       <img src={getUserAvatarUrl(comment.id)} alt="User Avatar" />
                       <div className="comment-content">
                         <strong>{getUserName(comment.id)}</strong>: {comment.body}
+                        <FaRegHeart className="heart-icon" size={24} color="black" />
+                        <span className="reply-text">Reply</span> {/* Reply text */}
                       </div>
                     </li>
-                  );
-                })}
-              </ul>
+                  ))}
+                </ul>
+              )}
           </div>
         ))}
       </div>
