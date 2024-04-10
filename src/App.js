@@ -91,7 +91,7 @@ function SocialMediaHomePage() {
                       <div className="comment-content">
                         <strong>{getUserName(comment.id)}</strong>: {comment.body}
                         <FaRegHeart className="heart-icon" size={24} color="black" />
-                        <span className="reply-text">Reply</span> {/* Reply text */}
+                        <span className="reply-text">Reply</span> 
                       </div>
                     </li>
                   ))}
